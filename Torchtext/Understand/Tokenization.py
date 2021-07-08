@@ -39,4 +39,3 @@ print(kor_text.split())
 
 # 문자 토큰화
 print(list(en_text))
-
