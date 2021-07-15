@@ -40,20 +40,21 @@ vocab_size = 500
 vocab = vocab.most_common(vocab_size)
 
 # Enumerate 시작
-# 
+# 인데그 0과 1을 제외한 나머지 단어들을 2부터 501까지 인덱스 부여
 word_to_index = {word[0] : index + 2 for index, word in enumerate(vocab)}
 word_to_index['pad'] = 1
 word_to_index['unk'] = 0
 
 encoded = []
-for line in tokenized:
+for line in tokenized: # 입력 데이터에서 1줄씩 문장을 읽음
     temp = []
-    for w in line:
+    for w in line: # 각 줄에서 1개씩 글자를 읽음
         try:
-            temp.append(word_to_index[w])
+            temp.append(word_to_index[w]) # 글자를 해당되는 정수로 변환
         except KeyError:
-            temp.append(word_to_index['unk'])
+            temp.append(word_to_index['unk']) # unk의 인덱스로 변환
 
-    encoded.append(temp)
+    encoded.append(temp) # 리스트에 삽입
 
+# 상위 10개 출력
 print(encoded[:10])
